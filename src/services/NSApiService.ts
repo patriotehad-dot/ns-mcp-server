@@ -2,10 +2,10 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
 import https from 'https';
 import Bottleneck from 'bottleneck';
-import { 
-  Disruption, 
-  GetDisruptionsArgs, 
-  TravelAdvice, 
+import {
+  Disruption,
+  GetDisruptionsArgs,
+  TravelAdvice,
   GetTravelAdviceArgs,
   DeparturesResponse,
   GetDeparturesArgs,
@@ -66,7 +66,9 @@ export class NSApiService {
   }
 
   private async request<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return this.requestLimiter.schedule(() => this.axiosInstance.get<T>(url, config).then((response) => response.data));
+    return this.requestLimiter.schedule(() =>
+      this.axiosInstance.get<T>(url, config).then((response) => response.data)
+    );
   }
 
   async getDisruptions(args: GetDisruptionsArgs): Promise<Disruption[]> {
@@ -146,4 +148,4 @@ export class NSApiService {
       },
     });
   }
-} 
+}
